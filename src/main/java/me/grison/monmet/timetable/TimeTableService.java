@@ -21,6 +21,8 @@ import java.util.regex.Pattern;
 public class TimeTableService {
     @Autowired
     AppRepository repository;
+    @Autowired
+    StopsService stopsService;
     final Matcher everyXMinutes = Pattern.compile("^.*toutes les (\\d+) minutes.*").matcher("");
 
     /**
@@ -48,12 +50,14 @@ public class TimeTableService {
     public TimeTable fetchTimeTable(Stop stop) throws Exception {
         String url = "http://lemet.fr/src/page_editions_horaires_iframe_build.php?ligne=" + stop.getLine() + "&head=" + stop.getHead().replaceAll("\\s", "%20") + "%7C" + stop.getLine() + "&arret=" + stop.getStopId();
         Document doc = Jsoup.connect(url).timeout(10000).get();
-        System.out.println(doc.html());
 
         TimeTable timeTable = new TimeTable();
         timeTable.setWeek(extractTimeTable(doc.select("table#horaires tr:eq(1) td.un table").first()));
         timeTable.setSaturday(extractTimeTable(doc.select("table#horaires tr:eq(1) td.deux table").first()));
         timeTable.setSunday(extractTimeTable(doc.select("table#horaires tr:eq(1) td.trois table").first()));
+
+        // Go get also the stop coordinates
+        stopsService.fetchStopCoordinates(stop.getLine(), stop.getStopName());
         return timeTable;
     }
 

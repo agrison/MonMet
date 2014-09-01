@@ -19,4 +19,8 @@ public class StorageKey {
     public static String hits() {
         return "monmet:api:hits";
     }
+
+    public static String coordinates(String line, String stopName) {
+        return String.format("monmet:line:%s:stop:%s:coordinates", line, stopName);
+    }
 }

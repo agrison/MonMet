@@ -3,14 +3,20 @@ package me.grison.monmet.repository;
 import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
-import me.grison.monmet.domain.*;
+import me.grison.monmet.domain.BusLine;
+import me.grison.monmet.domain.BusStop;
+import me.grison.monmet.domain.Stop;
+import me.grison.monmet.domain.TimeTable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.Tuple;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * This is the application repository.
@@ -122,43 +128,6 @@ public class AppRepository {
     }
 
     /**
-     * Find all lines, their heads and stops. Find everything.
-     *
-     * @return all the lines in store.
-     */
-    public Set<Line> getAllLines() {
-        Set<Line> lines = new HashSet<Line>();
-
-        Jedis jedis = jedisPool.getResource();
-        try {
-            // iterate on lines
-            for (String l : jedis.lrange("monmet:lines", 0, 1000)) {
-                Line line = new Line();
-                // get name
-                line.setName(jedis.hget("monmet:lines:" + l, "name"));
-
-                // iterate on heads
-                for (String h : jedis.lrange("monmet:lines:" + l + ":heads", 0, 10)) {
-                    // get all stops
-                    LineHeadStops headStops = new LineHeadStops();
-                    headStops.setHead(h);
-                    for (Tuple tuple : jedis.zrangeByScoreWithScores("monmet:lines:" + l + ":stops:" + h.replaceAll("\\s+", "_"), 0, Double.MAX_VALUE)) {
-                        headStops.getStops().add(new Stop(l, h, String.valueOf(Double.valueOf(tuple.getScore()).intValue()), tuple.getElement()));
-                    }
-
-                    line.getHeadStops().add(headStops);
-                }
-
-                lines.add(line);
-            }
-        } finally {
-            jedisPool.returnResource(jedis);
-        }
-
-        return lines;
-    }
-
-    /**
      * Check if we have the timetable for a specific stop in our store.
      *
      * @param stop the stop.
@@ -239,5 +208,16 @@ public class AppRepository {
         } finally {
             jedisPool.returnResource(jedis);
         }
+    }
+
+    public void saveCoordinates(String line, String stopName, List<Double> coordinates) {
+        Jedis jedis = jedisPool.getResource();
+        try {
+            jedis.set(StorageKey.coordinates(line, stopName),
+                    String.format("%f;%f", coordinates.get(0), coordinates.get(1)).replace(",", ".").replace(";", ","));
+        } finally {
+            jedisPool.returnResource(jedis);
+        }
+
     }
 }
