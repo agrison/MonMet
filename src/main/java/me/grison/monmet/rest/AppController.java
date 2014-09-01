@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
+/**
+ * This is the application controller.
+ */
 @RestController
 public class AppController {
     //@Autowired
@@ -23,6 +26,16 @@ public class AppController {
         return stopsService.getAllLines();
     }   */
 
+    /**
+     * Retrieve the timetable for a specific stop.
+     *
+     * @param line the line id.
+     * @param head the head id.
+     * @param stop the stop id.
+     * @param timestamp a timestamp.
+     * @return the timetable.
+     * @throws Exception in case something bad occurs
+     */
     @RequestMapping(value = "/api/tt/{line}/{head}/{stop}", method = RequestMethod.GET)
     public TimeTable specificStopTimeTable(@PathVariable("line") String line,
                                            @PathVariable("head") String head, // can be multiple separated by ','
@@ -34,8 +47,6 @@ public class AppController {
         for (int i = 0; i < stops.length; ++i) {
             tt.mergeWith(timeTableService.getTimeTableFor(new Stop(line, heads[i], stops[i], "")));
         }
-        //Stop specificStop = new Stop(line, head, stop, "");
-        //TimeTable tt = timeTableService.getTimeTableFor(specificStop);
 
         // give next rides
         if (timestamp != null) {
@@ -54,6 +65,13 @@ public class AppController {
         return tt;
     }
 
+    /**
+     * Get the next 3 rides if possible.
+     *
+     * @param next the next.
+     * @param c a calendar.
+     * @return the next 3 rides if available.
+     */
     private List<String> getNext3IfPossible(List<String> next, Calendar c) {
         List<String> nextRides = new ArrayList<String>();
         for (String n: next) {

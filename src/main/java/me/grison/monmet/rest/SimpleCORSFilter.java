@@ -5,6 +5,9 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import org.springframework.stereotype.Component;
 
+/**
+ * A CORS Filter.
+ */
 @Component
 public class SimpleCORSFilter implements Filter {
 

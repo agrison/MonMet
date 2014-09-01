@@ -15,6 +15,9 @@ import redis.clients.jedis.Tuple;
 
 import java.util.*;
 
+/**
+ * This is the application repository.
+ */
 @Repository
 public class AppRepository {
     @Autowired
@@ -22,6 +25,10 @@ public class AppRepository {
     final Splitter splitter = Splitter.on(",").omitEmptyStrings().trimResults();
     final Joiner joiner = Joiner.on(",").skipNulls();
 
+    /**
+     * Find all lines, their heads and stops. Find everything.
+     * @return all the lines in store.
+     */
     public Set<Line> getAllLines() {
         Set<Line> lines = new HashSet<Line>();
 
@@ -54,6 +61,11 @@ public class AppRepository {
         return lines;
     }
 
+    /**
+     * Check if we have the timetable for a specific stop in our store.
+     * @param stop the stop.
+     * @return whether we have the timetable for that stop.
+     */
     public boolean hasTimeTableForStop(Stop stop) {
         Jedis jedis = jedisPool.getResource();
         try {
@@ -63,6 +75,12 @@ public class AppRepository {
         }
     }
 
+    /**
+     * Get the timetable for a specific stop.
+     * If we don't have it we will fetch it then store it.
+     * @param stop the stop.
+     * @return the timetable for that stop.
+     */
     public TimeTable getTimeTableForStop(final Stop stop) {
         Jedis jedis = jedisPool.getResource();
         try {
@@ -77,6 +95,12 @@ public class AppRepository {
         }
     }
 
+    /**
+     * Save the given timetable for a specific stop in our store.
+     * @param stop the stop.
+     * @param timeTable the timetable.
+     * @return the timetable for a specific stop.
+     */
     public TimeTable saveTimeTableForStop(final Stop stop, final TimeTable timeTable) {
         Jedis jedis = jedisPool.getResource();
         try {
@@ -94,12 +118,17 @@ public class AppRepository {
         return timeTable;
     }
 
+    /**
+     * Read the name.
+     */
     private List<String> split(String s) {
         return Lists.newArrayList(splitter.split(s));
     }
 
+    /**
+     * Read the name.
+     */
     private String join(List<String> l) {
         return joiner.join(l);
     }
-
 }

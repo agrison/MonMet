@@ -10,6 +10,11 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+/**
+ * This is a time table.
+ * Times are stored as string formatted like this `HH:mm`.
+ * There are different times for monday-friday, saturday and sunday.
+ */
 @Data
 public class TimeTable {
     List<String> week = new ArrayList<String>();
@@ -17,6 +22,10 @@ public class TimeTable {
     List<String> sunday = new ArrayList<String>();
     List<String> nextRides;
 
+    /**
+     * Merge with another timetable.
+     * @param o the other timetable
+     */
     public void mergeWith(TimeTable o) {
         // merge
         week = new ArrayList<String>(o.getWeek());
@@ -35,6 +44,10 @@ public class TimeTable {
         sunday = ImmutableSet.copyOf(sunday).asList();
     }
 
+    /**
+     * String time comparator.
+     * @return a Comparator&lt;String> to sort times having the following format `HH:mm`.
+     */
     private Comparator<String> stringTimeComparator() {
         return new Comparator<String>() {
             @Override
