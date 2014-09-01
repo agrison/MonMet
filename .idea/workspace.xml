@@ -64,16 +64,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="AppRepository.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/me/grison/monmet/repository/AppRepository.java">
+      <file leaf-file-name="RestHitAspect.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/me/grison/monmet/aop/RestHitAspect.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="77" column="25" selection-start="2517" selection-end="2517" vertical-scroll-proportion="0.0" vertical-offset="1042" max-vertical-offset="3400">
+            <state line="18" column="41" selection-start="598" selection-end="598" vertical-scroll-proportion="0.6375" vertical-offset="0" max-vertical-offset="480">
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#947#970#0" expanded="true" />
-                <element signature="e#1105#1114#0" expanded="true" />
-                <element signature="e#2283#2292#0" expanded="true" />
-                <element signature="e#2799#2805#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -82,7 +78,7 @@
       <file leaf-file-name="BusLine.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/me/grison/monmet/domain/BusLine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="17" selection-start="152" selection-end="152" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="289">
+            <state line="8" column="14" selection-start="152" selection-end="152" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="289">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -101,10 +97,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StopsService.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/me/grison/monmet/timetable/StopsService.java">
+      <file leaf-file-name="logback.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/logback.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="30" column="31" selection-start="783" selection-end="783" vertical-scroll-proportion="0.0" vertical-offset="115" max-vertical-offset="595">
+            <state line="3" column="54" selection-start="185" selection-end="185" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="170">
               <folding />
             </state>
           </provider>
@@ -113,7 +109,7 @@
       <file leaf-file-name="Lines.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/me/grison/monmet/domain/Lines.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="36" selection-start="127" selection-end="127" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="289">
+            <state line="8" column="20" selection-start="127" selection-end="127" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="289">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -124,16 +120,16 @@
       <file leaf-file-name="AppController.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/me/grison/monmet/rest/AppController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="107" column="56" selection-start="3783" selection-end="3783" vertical-scroll-proportion="0.0" vertical-offset="489" max-vertical-offset="1989">
+            <state line="29" column="6" selection-start="744" selection-end="744" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1989">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="init.redis" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="init.redis" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/init.redis">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="29" selection-start="2124" selection-end="2124" vertical-scroll-proportion="0.5267666" vertical-offset="400" max-vertical-offset="901">
+            <state line="38" column="0" selection-start="2124" selection-end="2124" vertical-scroll-proportion="0.0" vertical-offset="400" max-vertical-offset="901">
               <folding />
             </state>
           </provider>
@@ -174,16 +170,19 @@
         <option value="$PROJECT_DIR$/src/main/java/me/grison/monmet/Application.java" />
         <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/jsp/index.jsp.html" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/me/grison/monmet/web/IndexController.java" />
         <option value="$PROJECT_DIR$/src/main/java/me/grison/monmet/domain/Lines.java" />
         <option value="$PROJECT_DIR$/src/main/java/me/grison/monmet/domain/BusLine.java" />
-        <option value="$PROJECT_DIR$/src/main/java/me/grison/monmet/repository/StorageKey.java" />
-        <option value="$PROJECT_DIR$/src/main/java/me/grison/monmet/timetable/StopsService.java" />
         <option value="$PROJECT_DIR$/src/main/java/me/grison/monmet/domain/BusStop.java" />
-        <option value="$PROJECT_DIR$/src/main/java/me/grison/monmet/repository/AppRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/me/grison/monmet/rest/AppController.java" />
         <option value="$PROJECT_DIR$/src/main/resources/init.redis" />
+        <option value="$PROJECT_DIR$/src/main/resources/logback.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/me/grison/monmet/timetable/StopsService.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/me/grison/monmet/aop/RepositoryHitAspect.java" />
+        <option value="$PROJECT_DIR$/src/main/java/me/grison/monmet/repository/AppRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/me/grison/monmet/repository/StorageKey.java" />
+        <option value="$PROJECT_DIR$/src/main/java/me/grison/monmet/aop/RestHitAspect.java" />
       </list>
     </option>
   </component>
@@ -549,6 +548,44 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="domain" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MonMet" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MonMet" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="me" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="grison" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="monmet" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="aop" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -928,16 +965,16 @@
       <created>1409284229292</created>
       <updated>1409284229292</updated>
       <workItem from="1409284230676" duration="22116000" />
-      <workItem from="1409553269256" duration="12123000" />
+      <workItem from="1409553269256" duration="14740000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34239000" />
+    <option name="totallyTimeSpent" value="36856000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="7" y="27" width="1612" height="856" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -947,7 +984,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.43455496" sideWeight="0.6087508" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33507854" sideWeight="0.4388535" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33507854" sideWeight="0.4388535" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32938388" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -955,7 +992,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32929936" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25286624" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25286624" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33507854" sideWeight="0.56050956" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1022,7 +1059,8 @@
             <element signature="e#947#970#0" expanded="true" />
             <element signature="e#1105#1114#0" expanded="true" />
             <element signature="e#2283#2292#0" expanded="true" />
-            <element signature="e#2799#2805#0" expanded="true" />
+            <element signature="e#3543#3552#0" expanded="true" />
+            <element signature="e#4138#4144#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1180,13 +1218,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="86" column="0" selection-start="2779" selection-end="2779" vertical-scroll-proportion="2.32" vertical-offset="476" max-vertical-offset="2074">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/me/grison/monmet/timetable/TimeTableService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="48" column="53" selection-start="1436" selection-end="1436" vertical-scroll-proportion="0.0" vertical-offset="442" max-vertical-offset="1751">
@@ -1199,17 +1230,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/me/grison/monmet/domain/Lines.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="36" selection-start="127" selection-end="127" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="289">
+        <state line="8" column="20" selection-start="127" selection-end="127" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="289">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/me/grison/monmet/repository/StorageKey.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="60" selection-start="432" selection-end="432" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="408">
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1219,13 +1243,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/me/grison/monmet/timetable/StopsService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="31" selection-start="783" selection-end="783" vertical-scroll-proportion="0.0" vertical-offset="115" max-vertical-offset="595">
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1240,37 +1257,77 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/me/grison/monmet/domain/BusLine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="17" selection-start="152" selection-end="152" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="289">
+        <state line="8" column="14" selection-start="152" selection-end="152" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="289">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/me/grison/monmet/repository/AppRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="77" column="25" selection-start="2517" selection-end="2517" vertical-scroll-proportion="0.0" vertical-offset="1042" max-vertical-offset="3400">
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#947#970#0" expanded="true" />
-            <element signature="e#1105#1114#0" expanded="true" />
-            <element signature="e#2283#2292#0" expanded="true" />
-            <element signature="e#2799#2805#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/me/grison/monmet/rest/AppController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="107" column="56" selection-start="3783" selection-end="3783" vertical-scroll-proportion="0.0" vertical-offset="489" max-vertical-offset="1989">
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/init.redis">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="29" selection-start="2124" selection-end="2124" vertical-scroll-proportion="0.5267666" vertical-offset="400" max-vertical-offset="901">
+        <state line="38" column="0" selection-start="2124" selection-end="2124" vertical-scroll-proportion="0.0" vertical-offset="400" max-vertical-offset="901">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/logback.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="54" selection-start="185" selection-end="185" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="170">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/me/grison/monmet/rest/AppController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="6" selection-start="744" selection-end="744" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1989">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/me/grison/monmet/timetable/StopsService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="56" column="45" selection-start="2032" selection-end="2032" vertical-scroll-proportion="0.0" vertical-offset="393" max-vertical-offset="1326">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="93" column="12" selection-start="2961" selection-end="2961" vertical-scroll-proportion="0.70678335" vertical-offset="1258" max-vertical-offset="2142">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/me/grison/monmet/repository/StorageKey.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="27" selection-start="505" selection-end="505" vertical-scroll-proportion="0.70678335" vertical-offset="0" max-vertical-offset="476">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/me/grison/monmet/repository/AppRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="235" column="48" selection-start="7719" selection-end="7719" vertical-scroll-proportion="0.6959315" vertical-offset="3670" max-vertical-offset="4233">
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#947#970#0" expanded="true" />
+            <element signature="e#1105#1114#0" expanded="true" />
+            <element signature="e#2283#2292#0" expanded="true" />
+            <element signature="e#3543#3552#0" expanded="true" />
+            <element signature="e#4138#4144#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/me/grison/monmet/aop/RestHitAspect.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="41" selection-start="598" selection-end="598" vertical-scroll-proportion="0.6375" vertical-offset="0" max-vertical-offset="480">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -15,4 +15,8 @@ public class StorageKey {
     public static String stops(String lineId, String head) {
         return String.format("monmet:line:%s:%s", lineId, head);
     }
+
+    public static String hits() {
+        return "monmet:api:hits";
+    }
 }

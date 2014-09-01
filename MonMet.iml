@@ -67,6 +67,9 @@
     <orderEntry type="library" name="Maven: org.jsoup:jsoup:1.7.2" level="project" />
     <orderEntry type="library" name="Maven: commons-io:commons-io:2.4" level="project" />
     <orderEntry type="library" name="Maven: javax.servlet:jstl:1.2" level="project" />
+    <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-aop:1.1.5.RELEASE" level="project" />
+    <orderEntry type="library" name="Maven: org.aspectj:aspectjrt:1.8.1" level="project" />
+    <orderEntry type="library" name="Maven: org.aspectj:aspectjweaver:1.8.1" level="project" />
   </component>
 </module>
 

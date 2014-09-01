@@ -82,6 +82,46 @@ public class AppRepository {
     }
 
     /**
+     * Check whether we have some stops in our store for the given line id and head.
+     *
+     * @param lineId the line id.
+     * @param head the head.
+     * @return whether we have stops or not.
+     */
+    public boolean hasStops(String lineId, String head) {
+        Jedis jedis = jedisPool.getResource();
+        try {
+            final String key = StorageKey.stops(lineId, head);
+            return jedis.exists(key) && jedis.zcard(key) > 0;
+        } finally {
+            jedisPool.returnResource(jedis);
+        }
+    }
+
+    /**
+     * Save the stops for the given line id and head.
+     *
+     * @param lineId the line id.
+     * @param head the head.
+     * @param stops the stops.
+     * @return the stops.
+     */
+    public List<BusStop> saveStops(String lineId, String head, Map<Integer, String> stops) {
+        Jedis jedis = jedisPool.getResource();
+        try {
+            List<BusStop> busStops = new ArrayList<BusStop>();
+            final String key = StorageKey.stops(lineId, head);
+            for (Map.Entry<Integer, String> e: stops.entrySet()) {
+                jedis.zadd(key, e.getKey(), e.getValue());
+                busStops.add(new BusStop(e.getKey(), e.getValue()));
+            }
+            return busStops;
+        } finally {
+            jedisPool.returnResource(jedis);
+        }
+    }
+
+    /**
      * Find all lines, their heads and stops. Find everything.
      *
      * @return all the lines in store.
@@ -190,5 +230,14 @@ public class AppRepository {
      */
     private String join(List<String> l) {
         return joiner.join(l);
+    }
+
+    public void incrementHits() {
+        Jedis jedis = jedisPool.getResource();
+        try {
+            jedis.incr(StorageKey.hits());
+        } finally {
+            jedisPool.returnResource(jedis);
+        }
     }
 }
