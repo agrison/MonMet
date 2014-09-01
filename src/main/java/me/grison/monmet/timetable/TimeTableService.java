@@ -14,13 +14,22 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
+/**
+ * Timetable service.
+ */
 @Service
 public class TimeTableService {
     @Autowired
     AppRepository repository;
     final Matcher everyXMinutes = Pattern.compile("^.*toutes les (\\d+) minutes.*").matcher("");
 
+    /**
+     * Get the timetable for a specific stop.
+     *
+     * @param stop the stop.
+     * @return the timetable.
+     * @throws Exception in case something bad occurs.
+     */
     public TimeTable getTimeTableFor(Stop stop) throws Exception {
         if (repository.hasTimeTableForStop(stop)) {
             return repository.getTimeTableForStop(stop);
@@ -29,9 +38,16 @@ public class TimeTableService {
         }
     }
 
+    /**
+     * Fetch the timetable from lemet.fr.
+     *
+     * @param stop th stop.
+     * @return the timetable.
+     * @throws Exception
+     */
     public TimeTable fetchTimeTable(Stop stop) throws Exception {
         String url = "http://lemet.fr/src/page_editions_horaires_iframe_build.php?ligne=" + stop.getLine() + "&head=" + stop.getHead().replaceAll("\\s", "%20") + "%7C" + stop.getLine() + "&arret=" + stop.getStopId();
-        Document doc = Jsoup.connect(url).get();
+        Document doc = Jsoup.connect(url).timeout(10000).get();
         System.out.println(doc.html());
 
         TimeTable timeTable = new TimeTable();
@@ -41,6 +57,12 @@ public class TimeTableService {
         return timeTable;
     }
 
+    /**
+     * Extract the timetable from an HTML document.
+     *
+     * @param table the table#horaires in the HTML page.
+     * @return the timetable.
+     */
     private List<String> extractTimeTable(Element table) {
         List<String> timeTable = new ArrayList<String>();
 
@@ -64,6 +86,12 @@ public class TimeTableService {
         return timeTable;
     }
 
+    /**
+     * Extracts a numeric from the given input.
+     *
+     * @param input the text to extract a numeric from.
+     * @return the time
+     */
     private String numeric(Element input) {
         String txt = input.text();
         if (everyXMinutes.reset(txt).matches()) {
