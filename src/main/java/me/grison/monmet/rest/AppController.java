@@ -1,7 +1,10 @@
 package me.grison.monmet.rest;
 
+import me.grison.monmet.domain.BusLine;
+import me.grison.monmet.domain.BusStop;
 import me.grison.monmet.domain.Stop;
 import me.grison.monmet.domain.TimeTable;
+import me.grison.monmet.timetable.StopsService;
 import me.grison.monmet.timetable.TimeTableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -9,22 +12,52 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 
 /**
  * This is the application controller.
  */
 @RestController
 public class AppController {
-    //@Autowired
-    //StopsService stopsService;
+    @Autowired
+    StopsService stopsService;
     @Autowired
     TimeTableService timeTableService;
 
-   /*
-    @RequestMapping(value = "/api/stops", method = RequestMethod.GET)
-    public Set<Line> allLines() {
-        return stopsService.getAllLines();
-    }   */
+
+    /**
+     * Get all the bus lines.
+     *
+     * @return a map of line types associated with a list of the lines in that category.
+     * Category can be "Mettis", "Lines", "Navettes", etc.
+     */
+    @RequestMapping(value = "/api/lines", method = RequestMethod.GET)
+    public Map<String, List<BusLine>> getLines() {
+        return stopsService.getLines();
+    }
+
+    /**
+     * Get all the heads for a specific line id.
+     *
+     * @param lineId the line id.
+     * @return the list of heads available for the given line id.
+     */
+    @RequestMapping(value = "/api/lines/{lineId}", method = RequestMethod.GET)
+    public List<String> getHeads(@PathVariable("lineId") String lineId) {
+        return stopsService.getHeads(lineId);
+    }
+
+
+    /**
+     * Get all the heads for a specific line id.
+     *
+     * @param lineId the line id.
+     * @return the list of heads available for the given line id.
+     */
+    @RequestMapping(value = "/api/lines/{lineId}/{head}", method = RequestMethod.GET)
+    public List<BusStop> getStops(@PathVariable("lineId") String lineId, @PathVariable("head") String head) {
+        return stopsService.getStops(lineId, head);
+    }
 
     /**
      * Retrieve the timetable for a specific stop.

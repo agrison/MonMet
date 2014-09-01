@@ -3,10 +3,7 @@ package me.grison.monmet.repository;
 import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
-import me.grison.monmet.domain.Line;
-import me.grison.monmet.domain.LineHeadStops;
-import me.grison.monmet.domain.Stop;
-import me.grison.monmet.domain.TimeTable;
+import me.grison.monmet.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import redis.clients.jedis.Jedis;
@@ -26,7 +23,67 @@ public class AppRepository {
     final Joiner joiner = Joiner.on(",").skipNulls();
 
     /**
+     * Get all the lines.
+     *
+     * @return all the lines.
+     */
+    public Map<String, List<BusLine>> getLines() {
+        Jedis jedis = jedisPool.getResource();
+        try {
+            Map<String, List<BusLine>> allLines = new HashMap<String, List<BusLine>>();
+            for (String line : jedis.lrange(StorageKey.TYPES, 0, 100)) {
+                List<BusLine> currentLines = new ArrayList<BusLine>();
+                for (Map.Entry<String, String> e : jedis.hgetAll(StorageKey.line(line)).entrySet()) {
+                    currentLines.add(
+                            new BusLine(e.getKey(), e.getValue())
+                    );
+                }
+                allLines.put(line, currentLines);
+            }
+            return allLines;
+        } finally {
+            jedisPool.returnResource(jedis);
+        }
+    }
+
+    /**
+     * Get the heads for a specific line id.
+     *
+     * @param lineId the line id.
+     * @return the heads for that line id.
+     */
+    public List<String> getHeads(String lineId) {
+        Jedis jedis = jedisPool.getResource();
+        try {
+            return jedis.lrange(StorageKey.heads(lineId), 0, 100);
+        } finally {
+            jedisPool.returnResource(jedis);
+        }
+    }
+
+    /**
+     * Get the stops for a specific line id and head.
+     *
+     * @param lineId the line id.
+     * @param head the head.
+     * @return the stops.
+     */
+    public List<BusStop> getStops(String lineId, String head) {
+        Jedis jedis = jedisPool.getResource();
+        try {
+            List<BusStop> stops = new ArrayList<BusStop>();
+            for (Tuple t: jedis.zrangeByScoreWithScores(StorageKey.stops(lineId, head), 0, Double.MAX_VALUE)) {
+                stops.add(new BusStop(t.getScore(), t.getElement()));
+            }
+            return stops;
+        } finally {
+            jedisPool.returnResource(jedis);
+        }
+    }
+
+    /**
      * Find all lines, their heads and stops. Find everything.
+     *
      * @return all the lines in store.
      */
     public Set<Line> getAllLines() {
@@ -63,6 +120,7 @@ public class AppRepository {
 
     /**
      * Check if we have the timetable for a specific stop in our store.
+     *
      * @param stop the stop.
      * @return whether we have the timetable for that stop.
      */
@@ -78,6 +136,7 @@ public class AppRepository {
     /**
      * Get the timetable for a specific stop.
      * If we don't have it we will fetch it then store it.
+     *
      * @param stop the stop.
      * @return the timetable for that stop.
      */
@@ -97,7 +156,8 @@ public class AppRepository {
 
     /**
      * Save the given timetable for a specific stop in our store.
-     * @param stop the stop.
+     *
+     * @param stop      the stop.
      * @param timeTable the timetable.
      * @return the timetable for a specific stop.
      */
