@@ -108,17 +108,17 @@ app.controller('mainController', function($scope, $state, $localstorage) {
 
   $scope.lineChange = function() {
     $.ajax({
-      url: 'http://lemet.fr/src/inc/LEMET_Horaires_print_form.class.php?action=headsign&id=' + $scope.selectedLine.substr(1),
+      url: 'http://192.168.1.63:8080/api/lines/' + $scope.selectedLine.substr(1),
       type:'GET',
-      dataType: "jsonp",
       success: function(data){
         $('#selectHead').prop('disabled', true);
         $scope.$apply(function() {
           $scope.heads = [];
           $scope.selectedHead = 'woot';
-          k = Object.keys(data);
-          for (var i = 0; i < k.length; ++i) {
-            $scope.heads.push({value: k[i], name: data[k[i]]});
+          console.log('----');
+          console.log(data);
+          for (var i = 0; i < data.length; ++i) {
+            $scope.heads.push({value: data[i], name: data[i]});
           }
         });
         $('#selectHead').prop('disabled', false);
@@ -130,44 +130,17 @@ app.controller('mainController', function($scope, $state, $localstorage) {
   $scope.allHeadsStops = {};
   $scope.matchingStops = [];
 
-  $scope.toggleSelectHead = function(head, id) {
-    var checked = $("#headCheckbox" + id).attr('checked') == 'checked';
-    if (checked) {
-      $.ajax({
-        url: 'http://lemet.fr/src/inc/LEMET_Horaires_print_form.class.php?action=arrets&head=' + $scope.selectedHead,
-        type:'GET',
-        dataType: "jsonp",
-        success: function(data) {
-          $('#selectStop').prop('disabled', true);
-          $scope.$apply(function() {
-            $scope.stops = [];
-            $scope.selectedStop = 'woot';
-            k = Object.keys(data);
-            for (var i = 0; i < k.length; ++i) {
-              $scope.stops.push({value: k[i], name: data[k[i]]});
-            }
-          });
-          $('#selectStop').prop('disabled', false);
-        }
-      });
-    } else {
-      // remove from matching stops
-    }
-  }
-
   $scope.headChange = function() {
     $.ajax({
-      url: 'http://lemet.fr/src/inc/LEMET_Horaires_print_form.class.php?action=arrets&head=' + $scope.selectedHead,
+      url: 'http://192.168.1.63:8080/api/lines/' + $scope.selectedLine.substr(1) + '/' + $scope.selectedHead,
       type:'GET',
-      dataType: "jsonp",
       success: function(data) {
         $('#selectStop').prop('disabled', true);
         $scope.$apply(function() {
           $scope.stops = [];
           $scope.selectedStop = 'woot';
-          k = Object.keys(data);
-          for (var i = 0; i < k.length; ++i) {
-            $scope.stops.push({value: k[i], name: data[k[i]]});
+          for (var i = 0; i < data.length; ++i) {
+            $scope.stops.push({value: data[i]['id'], name: data[i]['name']});
           }
         });
         $('#selectStop').prop('disabled', false);
@@ -192,7 +165,7 @@ app.controller('mainController', function($scope, $state, $localstorage) {
 
   $scope.add = function() {
     $.getJSON(
-      'http://monmet.dageeks.com/api/tt/'
+      'http://192.168.1.63:8080/api/tt/'
         + $scope.selectedLine.substr(1) + '/'
         + $scope.selectedHead.split('|')[0] + '/'
         + $scope.selectedStop,
