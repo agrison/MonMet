@@ -1,0 +1,40 @@
+2014-08-29 11:02:51.779 MonMet[26068:80b] Multi-tasking -> Device: YES, App: YES
+2014-08-29 11:02:51.786 MonMet[26068:80b] Unlimited access to network resources
+2014-08-29 11:02:51.805 MonMet[26068:80b] [CDVTimer][keyboard] 0.087023ms
+2014-08-29 11:02:51.806 MonMet[26068:80b] CDVPlugin class CDVStatusBar (pluginName: statusbar) does not exist.
+2014-08-29 11:02:51.806 MonMet[26068:80b] [CDVTimer][statusbar] 0.443995ms
+2014-08-29 11:02:51.807 MonMet[26068:80b] [CDVTimer][TotalPluginStartup] 1.797974ms
+2014-08-29 11:02:51.922 MonMet[26068:80b] Resetting plugins due to page load.
+2014-08-29 11:02:52.039 MonMet[26068:80b] Finished load of: file:///Users/alex/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/234F0358-5268-44C7-8757-E90D61B4DDF6/MonMet.app/www/index.html
+2014-08-29 11:03:57.439 MonMet[26663:80b] Multi-tasking -> Device: YES, App: YES
+2014-08-29 11:03:57.449 MonMet[26663:80b] Unlimited access to network resources
+2014-08-29 11:03:57.471 MonMet[26663:80b] [CDVTimer][keyboard] 0.087023ms
+2014-08-29 11:03:57.471 MonMet[26663:80b] CDVPlugin class CDVStatusBar (pluginName: statusbar) does not exist.
+2014-08-29 11:03:57.472 MonMet[26663:80b] [CDVTimer][statusbar] 0.524044ms
+2014-08-29 11:03:57.472 MonMet[26663:80b] [CDVTimer][TotalPluginStartup] 1.551032ms
+2014-08-29 11:03:57.671 MonMet[26663:80b] Resetting plugins due to page load.
+2014-08-29 11:03:57.875 MonMet[26663:80b] Finished load of: file:///Users/alex/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/7BE2BF8E-C8DE-424D-9D12-5146FAAA57E2/MonMet.app/www/index.html
+2014-08-29 13:52:38.579 MonMet[28231:80b] Multi-tasking -> Device: YES, App: YES
+2014-08-29 13:52:38.602 MonMet[28231:80b] Unlimited access to network resources
+2014-08-29 13:52:38.618 MonMet[28231:80b] [CDVTimer][keyboard] 0.060022ms
+2014-08-29 13:52:38.619 MonMet[28231:80b] CDVPlugin class CDVStatusBar (pluginName: statusbar) does not exist.
+2014-08-29 13:52:38.619 MonMet[28231:80b] [CDVTimer][statusbar] 0.422001ms
+2014-08-29 13:52:38.620 MonMet[28231:80b] [CDVTimer][TotalPluginStartup] 1.255989ms
+2014-08-29 13:52:38.804 MonMet[28231:80b] Resetting plugins due to page load.
+2014-08-29 13:52:39.041 MonMet[28231:80b] Finished load of: file:///Users/alex/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/5FB7003D-6EEC-4323-A925-DB508FC5BBDD/MonMet.app/www/index.html#/
+2014-08-29 13:53:11.248 MonMet[28559:80b] Multi-tasking -> Device: YES, App: YES
+2014-08-29 13:53:11.259 MonMet[28559:80b] Unlimited access to network resources
+2014-08-29 13:53:11.280 MonMet[28559:80b] [CDVTimer][keyboard] 0.088990ms
+2014-08-29 13:53:11.281 MonMet[28559:80b] CDVPlugin class CDVStatusBar (pluginName: statusbar) does not exist.
+2014-08-29 13:53:11.281 MonMet[28559:80b] [CDVTimer][statusbar] 0.431001ms
+2014-08-29 13:53:11.281 MonMet[28559:80b] [CDVTimer][TotalPluginStartup] 1.824021ms
+2014-08-29 13:53:11.454 MonMet[28559:80b] Resetting plugins due to page load.
+2014-08-29 13:53:11.682 MonMet[28559:80b] Finished load of: file:///Users/alex/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/7B53F8F8-4666-4E81-9569-E0C6F98135BE/MonMet.app/www/index.html#/
+2014-08-29 13:54:41.659 MonMet[28995:80b] Multi-tasking -> Device: YES, App: YES
+2014-08-29 13:54:41.666 MonMet[28995:80b] Unlimited access to network resources
+2014-08-29 13:54:41.684 MonMet[28995:80b] [CDVTimer][keyboard] 0.063002ms
+2014-08-29 13:54:41.685 MonMet[28995:80b] CDVPlugin class CDVStatusBar (pluginName: statusbar) does not exist.
+2014-08-29 13:54:41.685 MonMet[28995:80b] [CDVTimer][statusbar] 0.396013ms
+2014-08-29 13:54:41.685 MonMet[28995:80b] [CDVTimer][TotalPluginStartup] 1.350999ms
+2014-08-29 13:54:41.765 MonMet[28995:80b] Resetting plugins due to page load.
+2014-08-29 13:54:41.911 MonMet[28995:80b] Finished load of: file:///Users/alex/Library/Application%20Support/iPhone%20Simulator/7.0.3/Applications/1DF0043F-9574-4697-8E1A-9810FEEF5968/MonMet.app/www/index.html#/
