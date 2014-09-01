@@ -100,12 +100,14 @@ app.run(function($ionicPlatform, $localstorage) {
 computeNext3Rides = function(tt) {
   var now = new Date().getTime();
     var next = [];
-    for (var i = 0; i < tt.week.length; ++i) {
+    var day = new Date().getDay();
+    var period = day == 0 ? tt.sunday : day == 6 ? tt.saturday : tt.week;
+    for (var i = 0; i < period.length; ++i) {
       if (next.length > 2)
         break;
 
       var d = new Date();
-      var t = tt.week[i];
+      var t = period[i];
       var h = t.split(':')[0];
       var m = t.split(':')[1];
       d.setHours(parseInt(h));

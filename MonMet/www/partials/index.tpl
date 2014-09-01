@@ -6,6 +6,9 @@
 </div>
 
 <div ng-hide="noFavorites()">
+  <div class="row">
+    <div class="col col-100 boxHour">{{currentTime.toLocaleString('fr')}}</div>
+  </div>
   <div id="favoritesContainer">
     <ul class="list">
       <li class="item" ng-repeat="fav in favorites" style="background-color: #ecf0f1;">

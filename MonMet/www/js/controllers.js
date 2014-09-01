@@ -15,6 +15,8 @@ app.controller('mainController', function($scope, $state, $localstorage) {
   $scope.GotoLink = function(link) {
     window.open(link, '_system');
   };
+
+  $scope.currentTime = new Date();
 })
 
 .controller('indexController', function($scope, $state, $localstorage, $timeout) {
@@ -65,6 +67,7 @@ app.controller('mainController', function($scope, $state, $localstorage) {
   var cancelRefresh = null;
   $scope.updateNextRidesPeriodically = function() {
     cancelRefresh = $timeout(function myFunction() {
+        $scope.currentTime = new Date();
         var interval = 10000;
         if ($scope.noFavorites()) {
           // cycle the bus through funky colors
