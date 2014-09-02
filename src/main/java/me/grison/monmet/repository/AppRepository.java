@@ -212,4 +212,10 @@ public class AppRepository {
             return new LatLon(Double.valueOf(coords[0]), Double.valueOf(coords[1]));
         }
     }
+
+    public String getHits() {
+        try (Jedis jedis = jedisPool.getResource()) {
+            return jedis.get(StorageKey.hits());
+        }
+    }
 }

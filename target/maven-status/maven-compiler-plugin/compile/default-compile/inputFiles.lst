@@ -3,6 +3,7 @@
 /Users/alex/Dev/github/MonMet/src/main/java/me/grison/monmet/domain/BusLine.java
 /Users/alex/Dev/github/MonMet/src/main/java/me/grison/monmet/timetable/TimeTableService.java
 /Users/alex/Dev/github/MonMet/src/main/java/me/grison/monmet/rest/SimpleCORSFilter.java
+/Users/alex/Dev/github/MonMet/src/main/java/me/grison/monmet/domain/LatLon.java
 /Users/alex/Dev/github/MonMet/src/main/java/me/grison/monmet/config/RedisConfig.java
 /Users/alex/Dev/github/MonMet/src/main/java/me/grison/monmet/web/IndexController.java
 /Users/alex/Dev/github/MonMet/src/main/java/me/grison/monmet/Application.java
