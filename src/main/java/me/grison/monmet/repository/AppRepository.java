@@ -13,10 +13,7 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.Tuple;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * This is the application repository.
@@ -136,7 +133,29 @@ public class AppRepository {
     public boolean hasTimeTableForStop(Stop stop) {
         Jedis jedis = jedisPool.getResource();
         try {
-            return jedis.exists("monmet:tt:" + stop.getHead() + ":" + stop.getStopId());
+            return jedis.exists(StorageKey.timeTable(stop));
+        } finally {
+            jedisPool.returnResource(jedis);
+        }
+    }
+
+    /**
+     * Get the number of days since the last timetable update.
+     *
+     * @param stop the stop.
+     * @return the number of days.
+     */
+    public long daysSinceLastTimeTableUpdate(Stop stop) {
+        Jedis jedis = jedisPool.getResource();
+        try {
+            if (jedis.exists(StorageKey.timeTableUpdate(stop))) {
+                Long lastUpdate = Long.valueOf(jedis.get(StorageKey.timeTableUpdate(stop)));
+                Calendar lastUpdateCal = Calendar.getInstance();
+                lastUpdateCal.setTimeInMillis(lastUpdate);
+                return (Calendar.getInstance().getTimeInMillis() - lastUpdate) / (24*60*60*1000);
+            } else {
+                return 0;
+            }
         } finally {
             jedisPool.returnResource(jedis);
         }

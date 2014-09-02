@@ -1,5 +1,7 @@
 package me.grison.monmet.repository;
 
+import me.grison.monmet.domain.Stop;
+
 public class StorageKey {
 
     public static String TYPES = "monmet:types";
@@ -22,5 +24,13 @@ public class StorageKey {
 
     public static String coordinates(String line, String stopName) {
         return String.format("monmet:line:%s:stop:%s:coordinates", line, stopName);
+    }
+
+    public static String timeTable(Stop stop) {
+        return String.format("monmet:tt:%s:%s", stop.getHead(), stop.getStopId());
+    }
+
+    public static String timeTableUpdate(Stop stop) {
+        return timeTable(stop) + ":update";
     }
 }

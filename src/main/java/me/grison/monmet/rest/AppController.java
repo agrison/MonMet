@@ -71,16 +71,15 @@ public class AppController {
      */
     @RequestMapping(value = "/api/tt/{line}/{head}/{stop}", method = RequestMethod.GET)
     public TimeTable specificStopTimeTable(@PathVariable("line") String line,
-                                           @PathVariable("head") String head, //
-                                           @PathVariable("stop") String stop, // can be multiple separated by ','
+                                           @PathVariable("head") String head,
+                                           @PathVariable("stop") String stop,
                                            @RequestParam(value = "time", required = false) Long timestamp,
-                                           @RequestParam(value = "stopName") String stopName) throws Exception {
-        //String[] heads = head.split(",");
-        //String[] stops = stop.split(",");
-        //TimeTable tt = new TimeTable();
-        //for (int i = 0; i < stops.length; ++i) {
-        TimeTable tt = timeTableService.getTimeTableFor(new Stop(line, head, stop, stopName));
-        //}
+                                           @RequestParam(value = "stopName") String stopName,
+                                           @RequestParam(value = "forceRefresh", required = false) Boolean refresh) throws Exception {
+        TimeTable tt = timeTableService.getTimeTableFor(
+                new Stop(line, head, stop, stopName),
+                refresh != null ? refresh.booleanValue() : false
+        );
 
         // give next rides
         if (timestamp != null) {

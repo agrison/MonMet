@@ -7,6 +7,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -23,6 +24,8 @@ public class TimeTableService {
     AppRepository repository;
     @Autowired
     StopsService stopsService;
+    @Value("${timeTable.refreshInterval}")
+    Long timeTableRefreshInterval;
     final Matcher everyXMinutes = Pattern.compile("^.*toutes les (\\d+) minutes.*").matcher("");
 
     /**
@@ -32,12 +35,14 @@ public class TimeTableService {
      * @return the timetable.
      * @throws Exception in case something bad occurs.
      */
-    public TimeTable getTimeTableFor(Stop stop) throws Exception {
-        if (repository.hasTimeTableForStop(stop)) {
-            return repository.getTimeTableForStop(stop);
-        } else {
+    public TimeTable getTimeTableFor(Stop stop, boolean forceRefresh) throws Exception {
+        if (repository.hasTimeTableForStop(stop))
+            if (repository.daysSinceLastTimeTableUpdate(stop) > timeTableRefreshInterval)
+                return repository.saveTimeTableForStop(stop, fetchTimeTable(stop));
+            else
+                return repository.getTimeTableForStop(stop);
+        else
             return repository.saveTimeTableForStop(stop, fetchTimeTable(stop));
-        }
     }
 
     /**
