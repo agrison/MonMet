@@ -26,6 +26,8 @@ public class TimeTableService {
     StopsService stopsService;
     @Value("${timeTable.refreshInterval}")
     Long timeTableRefreshInterval;
+    @Value("${timeTable.connectionTimeout")
+    Integer timeTableConnectionTimeout;
     final Matcher everyXMinutes = Pattern.compile("^.*toutes les (\\d+) minutes.*").matcher("");
 
     /**
@@ -54,7 +56,7 @@ public class TimeTableService {
      */
     public TimeTable fetchTimeTable(Stop stop) throws Exception {
         String url = "http://lemet.fr/src/page_editions_horaires_iframe_build.php?ligne=" + stop.getLine() + "&head=" + stop.getHead().replaceAll("\\s", "%20") + "%7C" + stop.getLine() + "&arret=" + stop.getStopId();
-        Document doc = Jsoup.connect(url).timeout(10000).get();
+        Document doc = Jsoup.connect(url).timeout(timeTableConnectionTimeout).get();
 
         TimeTable timeTable = new TimeTable();
         timeTable.setWeek(extractTimeTable(doc.select("table#horaires tr:eq(1) td.un table").first()));
