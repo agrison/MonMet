@@ -15,7 +15,6 @@ redis-server
 ```
 
 Init redis
-
 ```
 cat src/main/resources/init.redis | redis-cli --pipe
 ```
