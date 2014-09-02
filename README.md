@@ -18,13 +18,14 @@ Init redis
 
 ```
 cat src/main/resources/init.redis | redis-cli --pipe
-``
+```
 
 Run the backend
 ```
 mvn package
 nohup java -jar target/MonMet*.jar &
 ```
+
 
 ## API
 
