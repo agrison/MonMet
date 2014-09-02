@@ -59,10 +59,30 @@ nohup java -jar target/MonMet*.jar &
 
 #### GET `/api/lines/{lineId}`
 
+```json
+[
+    "CITE U",
+    "MATERNITE",
+    ...
+]
+```
 
 
 #### GET `/api/lines/{lineId}/{head}`
 
+```json
+[
+    {
+        "id": "21327",
+        "name": "REPUBLIQUE",
+    },
+    {
+        "id": "31329",
+        "name": "CITE U",
+    },
+    ...
+]
+```
 
 
 ### GET `/api/tt/{lineId}/{head}/{stopId}?stopName={stopName}`
