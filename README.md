@@ -37,7 +37,7 @@ nohup java -jar target/MonMet*.jar &
 |   GET   | /api/tt/{lineId}/{head}/{stopId}?stopName={stopName} | Get the timetable for a specific line, head and stop       |
 
 
-## JSON
+## Sample JSON
 
 #### GET `/api/lines`
 
@@ -85,5 +85,37 @@ nohup java -jar target/MonMet*.jar &
 ```
 
 
-### GET `/api/tt/{lineId}/{head}/{stopId}?stopName={stopName}`
+### GET `/api/tt/{lineId}/{head}/{stopId}?stopName={stopName}(&timestamp={timestamp})`
 
+```json
+{
+    "week": [
+        "05:18",
+        "05:36",
+        "06:10",
+        "06:28",
+        "06:43",
+        ...
+    ],
+    "saturday": [
+        "05:18",
+        "05:36",
+        "06:06",
+        "06:36",
+        ...
+    ],
+    "sunday": [
+        "05:18",
+        "06:36",
+        "07:12",
+        "08:05",
+        "08:35",
+        ...
+    ],
+    "nextRides": [
+        "19:06",
+        "19:16",
+        "19:26"
+     ]
+}
+```
