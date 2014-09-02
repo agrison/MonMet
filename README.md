@@ -14,6 +14,12 @@ Run redis
 redis-server
 ```
 
+Init redis
+
+```
+cat src/main/resources/init.redis | redis-cli --pipe
+``
+
 Run the backend
 ```
 mvn package
@@ -22,22 +28,41 @@ nohup java -jar target/MonMet*.jar &
 
 ## API
 
-Get the available lines:
-
-`GET /api/lines`
-
-
-Get the available heads (directions) for a specific line:
-
-`GET /api/lines/{lineId}`
+| Method  | Path                                                 | Description                                                |
+|:-------:| ---------------------------------------------------- | -----------------------------------------------------------|
+|   GET   | /api/lines                                           | Get the available lines bus lines.                         |
+|   GET   | /api/lines/{lineId}                                  | Get the available heads (directions) for a specific line   |
+|   GET   | /api/lines/{lineId}/{head}                           | Get the available stops for a specific line and head       |
+|   GET   | /api/tt/{lineId}/{head}/{stopId}?stopName={stopName} | Get the timetable for a specific line, head and stop       |
 
 
-Get the available stops for a specific line and head:
+## JSON
 
-`GET /api/lines/{lineId}/{head}`
+### GET `/api/lines`
+
+```json
+{
+    Mettis: [
+        {
+            "id": "998",
+            "name": "A",
+        },
+        {
+            "id": "999",
+            "name": "B",
+        }
+    ],
+    ...
+}
+```
+
+### GET `/api/lines/{lineId}`
 
 
-Get the timetable for a specific line, head and stop:
 
-`GET /api/tt/{lineId}/{head}/{stopId}?stopName={stopName}`
+### GET `/api/lines/{lineId}/{head}`
+
+
+
+### GET `/api/tt/{lineId}/{head}/{stopId}?stopName={stopName}`
 
