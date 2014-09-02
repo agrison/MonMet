@@ -31,11 +31,10 @@ public class AppRepository {
      * @return all the lines.
      */
     public Map<String, List<BusLine>> getLines() {
-        Jedis jedis = jedisPool.getResource();
-        try {
-            Map<String, List<BusLine>> allLines = new HashMap<String, List<BusLine>>();
+        try (Jedis jedis = jedisPool.getResource()) {
+            Map<String, List<BusLine>> allLines = new HashMap<>();
             for (String line : jedis.lrange(StorageKey.TYPES, 0, 100)) {
-                List<BusLine> currentLines = new ArrayList<BusLine>();
+                List<BusLine> currentLines = new ArrayList<>();
                 for (Map.Entry<String, String> e : jedis.hgetAll(StorageKey.line(line)).entrySet()) {
                     currentLines.add(
                             new BusLine(e.getKey(), e.getValue())
@@ -44,8 +43,6 @@ public class AppRepository {
                 allLines.put(line, currentLines);
             }
             return allLines;
-        } finally {
-            jedisPool.returnResource(jedis);
         }
     }
 
@@ -56,11 +53,8 @@ public class AppRepository {
      * @return the heads for that line id.
      */
     public List<String> getHeads(String lineId) {
-        Jedis jedis = jedisPool.getResource();
-        try {
+        try (Jedis jedis = jedisPool.getResource()) {
             return jedis.lrange(StorageKey.heads(lineId), 0, 100);
-        } finally {
-            jedisPool.returnResource(jedis);
         }
     }
 
@@ -72,15 +66,12 @@ public class AppRepository {
      * @return the stops.
      */
     public List<BusStop> getStops(String lineId, String head) {
-        Jedis jedis = jedisPool.getResource();
-        try {
-            List<BusStop> stops = new ArrayList<BusStop>();
+        try (Jedis jedis = jedisPool.getResource()) {
+            List<BusStop> stops = new ArrayList<>();
             for (Tuple t: jedis.zrangeByScoreWithScores(StorageKey.stops(lineId, head), 0, Double.MAX_VALUE)) {
                 stops.add(new BusStop(t.getScore(), t.getElement()));
             }
             return stops;
-        } finally {
-            jedisPool.returnResource(jedis);
         }
     }
 
@@ -92,12 +83,9 @@ public class AppRepository {
      * @return whether we have stops or not.
      */
     public boolean hasStops(String lineId, String head) {
-        Jedis jedis = jedisPool.getResource();
-        try {
+        try (Jedis jedis = jedisPool.getResource()) {
             final String key = StorageKey.stops(lineId, head);
             return jedis.exists(key) && jedis.zcard(key) > 0;
-        } finally {
-            jedisPool.returnResource(jedis);
         }
     }
 
@@ -110,17 +98,14 @@ public class AppRepository {
      * @return the stops.
      */
     public List<BusStop> saveStops(String lineId, String head, Map<Integer, String> stops) {
-        Jedis jedis = jedisPool.getResource();
-        try {
-            List<BusStop> busStops = new ArrayList<BusStop>();
+        try (Jedis jedis = jedisPool.getResource()) {
+            List<BusStop> busStops = new ArrayList<>();
             final String key = StorageKey.stops(lineId, head);
             for (Map.Entry<Integer, String> e: stops.entrySet()) {
                 jedis.zadd(key, e.getKey(), e.getValue());
                 busStops.add(new BusStop(e.getKey(), e.getValue()));
             }
             return busStops;
-        } finally {
-            jedisPool.returnResource(jedis);
         }
     }
 
@@ -131,11 +116,8 @@ public class AppRepository {
      * @return whether we have the timetable for that stop.
      */
     public boolean hasTimeTableForStop(Stop stop) {
-        Jedis jedis = jedisPool.getResource();
-        try {
+        try (Jedis jedis = jedisPool.getResource()) {
             return jedis.exists(StorageKey.timeTable(stop));
-        } finally {
-            jedisPool.returnResource(jedis);
         }
     }
 
@@ -146,8 +128,7 @@ public class AppRepository {
      * @return the number of days.
      */
     public long daysSinceLastTimeTableUpdate(Stop stop) {
-        Jedis jedis = jedisPool.getResource();
-        try {
+        try (Jedis jedis = jedisPool.getResource()) {
             if (jedis.exists(StorageKey.timeTableUpdate(stop))) {
                 Long lastUpdate = Long.valueOf(jedis.get(StorageKey.timeTableUpdate(stop)));
                 Calendar lastUpdateCal = Calendar.getInstance();
@@ -156,8 +137,6 @@ public class AppRepository {
             } else {
                 return 0;
             }
-        } finally {
-            jedisPool.returnResource(jedis);
         }
     }
 
@@ -169,16 +148,13 @@ public class AppRepository {
      * @return the timetable for that stop.
      */
     public TimeTable getTimeTableForStop(final Stop stop) {
-        Jedis jedis = jedisPool.getResource();
-        try {
-            Map<String, String> info = jedis.hgetAll("monmet:tt:" + stop.getHead() + ":" + stop.getStopId());
+        try (Jedis jedis = jedisPool.getResource()) {
+            Map<String, String> info = jedis.hgetAll(StorageKey.timeTable(stop));
             TimeTable timeTable = new TimeTable();
             timeTable.setWeek(split(info.get("week")));
             timeTable.setSaturday(split(info.get("saturday")));
             timeTable.setSunday(split(info.get("sunday")));
             return timeTable;
-        } finally {
-            jedisPool.returnResource(jedis);
         }
     }
 
@@ -190,18 +166,15 @@ public class AppRepository {
      * @return the timetable for a specific stop.
      */
     public TimeTable saveTimeTableForStop(final Stop stop, final TimeTable timeTable) {
-        Jedis jedis = jedisPool.getResource();
-        try {
+        try (Jedis jedis = jedisPool.getResource()) {
             jedis.hmset(
-                    "monmet:tt:" + stop.getHead() + ":" + stop.getStopId(),
+                    StorageKey.timeTable(stop),
                     new HashMap<String, String>() {{
                         put("week", join(timeTable.getWeek()));
                         put("saturday", join(timeTable.getSaturday()));
                         put("sunday", join(timeTable.getSunday()));
                     }}
             );
-        } finally {
-            jedisPool.returnResource(jedis);
         }
         return timeTable;
     }
@@ -221,21 +194,15 @@ public class AppRepository {
     }
 
     public void incrementHits() {
-        Jedis jedis = jedisPool.getResource();
-        try {
+        try (Jedis jedis = jedisPool.getResource()) {
             jedis.incr(StorageKey.hits());
-        } finally {
-            jedisPool.returnResource(jedis);
         }
     }
 
     public void saveCoordinates(String line, String stopName, List<Double> coordinates) {
-        Jedis jedis = jedisPool.getResource();
-        try {
+        try (Jedis jedis = jedisPool.getResource()) {
             jedis.set(StorageKey.coordinates(line, stopName),
                     String.format("%f;%f", coordinates.get(0), coordinates.get(1)).replace(",", ".").replace(";", ","));
-        } finally {
-            jedisPool.returnResource(jedis);
         }
 
     }
