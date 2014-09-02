@@ -17,7 +17,7 @@ import org.springframework.core.io.ClassPathResource;
 public class Application {
 
     public static void main(String[] args) throws Exception {
-        ApplicationContext ctx = SpringApplication.run(Application.class, args);
+        SpringApplication.run(Application.class, args);
         ClassPathResource res = new ClassPathResource("splash.txt");
         for (String l: IOUtils.readLines(res.getInputStream())) {
             System.out.println(l);
