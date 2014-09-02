@@ -39,7 +39,7 @@ nohup java -jar target/MonMet*.jar &
 
 ## JSON
 
-### GET `/api/lines`
+#### GET `/api/lines`
 
 ```json
 {
@@ -57,11 +57,11 @@ nohup java -jar target/MonMet*.jar &
 }
 ```
 
-### GET `/api/lines/{lineId}`
+#### GET `/api/lines/{lineId}`
 
 
 
-### GET `/api/lines/{lineId}/{head}`
+#### GET `/api/lines/{lineId}/{head}`
 
 
 
