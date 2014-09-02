@@ -80,7 +80,7 @@ public class StopsService {
             final String json = IOUtils.toString(in);
             LOG.debug(json);
             StopCoordinatesInfo stopInfo = new Gson().fromJson(json, StopCoordinatesInfo.class);
-            List<Double> coordinates = new ArrayList<Double>();
+            List<Double> coordinates = new ArrayList<>();
             if (stopInfo.getTotal() == 1) {
                 coordinates = stopInfo.getStops().get(0).getLatlon();
             } else {
@@ -101,6 +101,6 @@ public class StopsService {
         } finally {
             IOUtils.closeQuietly(in);
         }
-        return new AsyncResult<Boolean>(true);
+        return new AsyncResult<>(true);
     }
 }

@@ -106,7 +106,7 @@ public class AppController {
      * @return the next 3 rides if available.
      */
     private List<String> getNext3IfPossible(List<String> next, Calendar c) {
-        List<String> nextRides = new ArrayList<String>();
+        List<String> nextRides = new ArrayList<>();
         for (String n: next) {
             if (nextRides.size() > 2)
                 break;

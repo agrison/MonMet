@@ -16,9 +16,9 @@ import java.util.List;
  */
 @Data
 public class TimeTable {
-    List<String> week = new ArrayList<String>();
-    List<String> saturday = new ArrayList<String>();
-    List<String> sunday = new ArrayList<String>();
+    List<String> week = new ArrayList<>();
+    List<String> saturday = new ArrayList<>();
+    List<String> sunday = new ArrayList<>();
     List<String> nextRides;
 
     /**
@@ -27,9 +27,9 @@ public class TimeTable {
      */
     public void mergeWith(TimeTable o) {
         // merge
-        week = new ArrayList<String>(o.getWeek());
-        saturday = new ArrayList<String>(o.getSaturday());
-        sunday = new ArrayList<String>(o.getSunday());
+        week = new ArrayList<>(o.getWeek());
+        saturday = new ArrayList<>(o.getSaturday());
+        sunday = new ArrayList<>(o.getSunday());
 
         // sort
         final Comparator<String> comparator = stringTimeComparator();

@@ -73,7 +73,7 @@ public class TimeTableService {
      * @return the timetable.
      */
     private List<String> extractTimeTable(Element table) {
-        List<String> timeTable = new ArrayList<String>();
+        List<String> timeTable = new ArrayList<>();
 
         for (Element tr : table.select("tr")) {
             String hour = numeric(tr.children().first());
