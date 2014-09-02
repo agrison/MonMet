@@ -27,7 +27,7 @@ nohup java -jar target/MonMet*.jar &
 ```
 
 
-## API
+## REST API
 
 | Method  | Path                                                 | Description                                                |
 |:-------:| ---------------------------------------------------- | -----------------------------------------------------------|
@@ -35,6 +35,7 @@ nohup java -jar target/MonMet*.jar &
 |   GET   | /api/lines/{lineId}                                  | Get the available heads (directions) for a specific line   |
 |   GET   | /api/lines/{lineId}/{head}                           | Get the available stops for a specific line and head       |
 |   GET   | /api/tt/{lineId}/{head}/{stopId}?stopName={stopName} | Get the timetable for a specific line, head and stop       |
+|   GET   | /api/coords/{lineId}/{stopName}                      | Get the coordinates for a specific stop of a bus line.     |
 
 
 ## Sample JSON
@@ -85,7 +86,7 @@ nohup java -jar target/MonMet*.jar &
 ```
 
 
-### GET `/api/tt/{lineId}/{head}/{stopId}?stopName={stopName}(&timestamp={timestamp})`
+#### GET `/api/tt/{lineId}/{head}/{stopId}?stopName={stopName}(&timestamp={timestamp})`
 
 ```json
 {
@@ -117,5 +118,14 @@ nohup java -jar target/MonMet*.jar &
         "19:16",
         "19:26"
      ]
+}
+```
+
+#### GET `/api/coords/{lineId}/{stopName}`
+
+```json
+{
+    "lat": 49.121565,
+    "lon": 6.175176
 }
 ```

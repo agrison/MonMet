@@ -3,10 +3,7 @@ package me.grison.monmet.repository;
 import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
-import me.grison.monmet.domain.BusLine;
-import me.grison.monmet.domain.BusStop;
-import me.grison.monmet.domain.Stop;
-import me.grison.monmet.domain.TimeTable;
+import me.grison.monmet.domain.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import redis.clients.jedis.Jedis;
@@ -204,6 +201,15 @@ public class AppRepository {
             jedis.set(StorageKey.coordinates(line, stopName),
                     String.format("%f;%f", coordinates.get(0), coordinates.get(1)).replace(",", ".").replace(";", ","));
         }
+    }
 
+    public LatLon getCoordinates(String line, String stopName) {
+        try (Jedis jedis = jedisPool.getResource()) {
+            if (!jedis.exists(StorageKey.coordinates(line, stopName))) {
+                return null;
+            }
+            String coords[] = jedis.get(StorageKey.coordinates(line, stopName)).split(",");
+            return new LatLon(Double.valueOf(coords[0]), Double.valueOf(coords[1]));
+        }
     }
 }

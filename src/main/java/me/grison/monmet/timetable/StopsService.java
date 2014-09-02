@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import me.grison.monmet.domain.BusLine;
 import me.grison.monmet.domain.BusStop;
+import me.grison.monmet.domain.LatLon;
 import me.grison.monmet.domain.ext.StopCoordinatesInfo;
 import me.grison.monmet.repository.AppRepository;
 import org.apache.commons.io.IOUtils;
@@ -102,5 +103,9 @@ public class StopsService {
             IOUtils.closeQuietly(in);
         }
         return new AsyncResult<>(true);
+    }
+
+    public LatLon getStopCoordinates(String line, String stopName) {
+        return repository.getCoordinates(line, stopName);
     }
 }

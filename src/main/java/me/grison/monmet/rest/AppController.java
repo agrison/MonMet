@@ -1,9 +1,6 @@
 package me.grison.monmet.rest;
 
-import me.grison.monmet.domain.BusLine;
-import me.grison.monmet.domain.BusStop;
-import me.grison.monmet.domain.Stop;
-import me.grison.monmet.domain.TimeTable;
+import me.grison.monmet.domain.*;
 import me.grison.monmet.timetable.StopsService;
 import me.grison.monmet.timetable.TimeTableService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -119,5 +116,18 @@ public class AppController {
                 nextRides.add(n);
         }
         return nextRides;
+    }
+
+    /**
+     * Get the stop coordinates (latitude & longitude).
+     *
+     * @param line the line id.
+     * @param stopName the stop name.
+     * @return the coordinates for that stop.
+     */
+    @RequestMapping(value = "/api/coords/{lineId}/{stopName}")
+    public LatLon getStopCoordinates(@PathVariable("lineId") String line,
+                                     @PathVariable("stopName") String stopName) {
+        return stopsService.getStopCoordinates(line, stopName);
     }
 }
