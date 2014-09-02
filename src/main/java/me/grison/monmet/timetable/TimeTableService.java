@@ -26,7 +26,7 @@ public class TimeTableService {
     StopsService stopsService;
     @Value("${timeTable.refreshInterval}")
     Long timeTableRefreshInterval;
-    @Value("${timeTable.connectionTimeout")
+    @Value("${timeTable.connectionTimeout}")
     Integer timeTableConnectionTimeout;
     final Matcher everyXMinutes = Pattern.compile("^.*toutes les (\\d+) minutes.*").matcher("");
 
