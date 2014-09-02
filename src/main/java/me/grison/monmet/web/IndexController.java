@@ -18,7 +18,7 @@ public class IndexController {
     @RequestMapping("/")
     public String index(Map<String, Object> model) {
         model.put("hits", repository.getHits());
-        return "index";
+        return "redirect:index.html";
     }
 
 }
