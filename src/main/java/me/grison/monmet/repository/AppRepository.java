@@ -213,9 +213,9 @@ public class AppRepository {
         }
     }
 
-    public String getHits() {
+    public Integer getHits() {
         try (Jedis jedis = jedisPool.getResource()) {
-            return jedis.get(StorageKey.hits());
+            return Integer.valueOf(jedis.get(StorageKey.hits()));
         }
     }
 }

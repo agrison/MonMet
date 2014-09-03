@@ -174,7 +174,9 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">${hits} API hits</a></li>
+                <li id="hitsContainer" style="display: none">
+                    <a href="/"><span id="hits">${hits}</span> API hits</a>
+                </li>
             </ul>
         </div>
     </div>
@@ -260,5 +262,13 @@
 
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $.getJSON('/hits', function(data) {
+            $("#hits").html(data.hits);
+            $("#hitsContainer").show();
+        });
+    });
+</script>
 </body>
 </html>
