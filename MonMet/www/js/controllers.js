@@ -19,7 +19,9 @@ app.controller('mainController', function($scope, $state, $localstorage) {
   $scope.currentTime = new Date();
 })
 
-.controller('indexController', function($scope, $state, $localstorage, $timeout) {
+.controller('indexController', function($scope, $state, $localstorage, $timeout, $ionicScrollDelegate) {
+  $ionicScrollDelegate.scrollTop();
+
   $('#goBack').hide();
   $('#toggleDelete').show();
 
@@ -33,6 +35,7 @@ app.controller('mainController', function($scope, $state, $localstorage) {
       if ($scope.favorites[i].timeTable) {
         var nextRides = computeNext3Rides($scope.favorites[i].timeTable);
         $scope.favorites[i]['next'] = _.first(nextRides, 3);
+        $scope.favorites[i].loading = false;
       }
     }
   };
@@ -40,6 +43,13 @@ app.controller('mainController', function($scope, $state, $localstorage) {
   if ($scope.noFavorites()) {
     $localstorage.setObject('favorites', []); // init empty list
     $scope.favorites = $localstorage.getObject('favorites');
+  } else {
+    // mark them all as loading
+    for (var i = 0; i < $scope.favorites.length; ++i) {
+      if ($scope.favorites[i].timeTable) {
+        $scope.favorites[i].loading = true;
+      }
+    }
   }
 
   $scope.toAdd = function() {
@@ -108,7 +118,7 @@ app.controller('mainController', function($scope, $state, $localstorage) {
 
   $scope.lineChange = function() {
     $.ajax({
-      url: 'http://192.168.1.63:8080/api/lines/' + $scope.selectedLine.substr(1),
+      url: 'http://localhost:8080/api/lines/' + $scope.selectedLine.substr(1),
       type:'GET',
       success: function(data){
         $('#selectHead').prop('disabled', true);
@@ -132,7 +142,7 @@ app.controller('mainController', function($scope, $state, $localstorage) {
 
   $scope.headChange = function() {
     $.ajax({
-      url: 'http://192.168.1.63:8080/api/lines/' + $scope.selectedLine.substr(1) + '/' + $scope.selectedHead,
+      url: 'http://localhost:8080/api/lines/' + $scope.selectedLine.substr(1) + '/' + $scope.selectedHead,
       type:'GET',
       success: function(data) {
         $('#selectStop').prop('disabled', true);
@@ -165,10 +175,10 @@ app.controller('mainController', function($scope, $state, $localstorage) {
 
   $scope.add = function() {
     $.getJSON(
-      'http://192.168.1.63:8080/api/tt/'
+      'http://localhost:8080/api/tt/'
         + $scope.selectedLine.substr(1) + '/'
         + $scope.selectedHead.split('|')[0] + '/'
-        + $scope.selectedStop,
+        + $scope.selectedStop + '?stopName=' + $('#selectStop option:selected').text(),
       function(data) {
         $scope.$apply(function() {
           var favorites = $localstorage.getObject('favorites');
@@ -197,6 +207,24 @@ app.controller('mainController', function($scope, $state, $localstorage) {
   $scope.current = $localstorage.getObject('currentFavorite');
   $scope.next = computeNext3Rides($scope.current.timeTable);
 
+  // split by 5 elems max
+  $scope.timeTableBy5f = function() {
+    var day = new Date().getDay();
+    var period = day == 0 ? 'sunday' : day == 6 ? 'saturday' : 'week';
+    var currentTt = $scope.current.timeTable[period];
+    currentTt.sort();
+    var gb =  _.groupBy(currentTt, function(e, i) { return Math.floor(i / 5); });
+    var tt = [];
+    var keys = _.map(Object.keys(gb), function(e) { return parseInt(e); });
+    for (var i = 0; i < keys.length; ++i) {
+      tt.push(gb[keys[i]]);
+    }
+    return tt;
+  };
+
+  $scope.timeTableBy5 = $scope.timeTableBy5f();
+
+  // just calling lemet url for now
   $.ajax({
     url: 'http://lemet.fr/src/inc/LEMET_Cartographie.class.php?action=stop_info&arret=' + $scope.current.stop,
     dataType: 'jsonp',
@@ -217,4 +245,5 @@ app.controller('mainController', function($scope, $state, $localstorage) {
               .bindPopup($scope.current.stop).openPopup();
     }
   });
+
 });

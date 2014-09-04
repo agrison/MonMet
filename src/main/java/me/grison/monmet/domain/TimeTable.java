@@ -4,6 +4,7 @@ package me.grison.monmet.domain;
 import com.google.common.collect.ImmutableSet;
 import lombok.Data;
 
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -15,6 +16,7 @@ import java.util.List;
  * There are different times for monday-friday, saturday and sunday.
  */
 @Data
+@XmlRootElement
 public class TimeTable {
     List<String> week = new ArrayList<>();
     List<String> saturday = new ArrayList<>();

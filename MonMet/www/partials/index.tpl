@@ -24,7 +24,10 @@
           <div class="col" style="display: inline; margin-right: 7px"><i class="fa fa-clock-o"></i></div>
           <div class="col" style="display: inline" ng-repeat="f in fav.next" ng-class="{hurry: f.hurry}">{{f.min}}" @ {{f.label}}<span ng-if="!$last">&nbsp;</span></div>
         </div>
-        <div style="float: right; margin-top: 0.5em; font-style: italic" ng-hide="fav.next">
+        <div style="float: right; margin-top: 0.5em; font-style: italic" ng-show="fav.loading">
+          Actualisation en cours...
+        </div>
+        <div style="float: right; margin-top: 0.5em; font-style: italic" ng-show="!fav.next && !fav.loading">
           Plus de passage avant demain.
         </div>
         </div>

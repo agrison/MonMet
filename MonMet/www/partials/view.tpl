@@ -10,4 +10,12 @@
   </div>
 </div>
 
+<div class="row" ng-repeat="tt in timeTableBy5" style="margin-top: -5px">
+  <div class="col col-20" ng-repeat="t in tt"
+    style="background-color: #ecf0f1; color: #2c3e50; text-align:center">
+      {{t}}
+  </div>
+</div>
+
+
 <div id="map" style="height: 400px; width: 95%; margin: 0 auto"></div>

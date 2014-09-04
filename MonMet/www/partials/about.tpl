@@ -5,7 +5,7 @@
        sauvegarder sur votre téléphone les horaires du réseau Met' aux arrêts de bus
        que vous utilisez couramment.</p>
     <p>Mon Met' est un projet open source, vous pouvez consulter son code source
-      sur son repository <a href="https://github.com/agrison/MonMet" target="_blank">Github</a>.</p>
+      sur son repository <a ng-click="GotoLink('https://github.com/agrison/MonMet')">Github</a>.</p>
   </div>
 </div>
 
@@ -14,7 +14,7 @@
   <div class="item item-text-wrap" style="text-align: center">
     <p>Aucune donnée personnelle n'est utilisée pour les besoins de l'application.</p>
     <p>Une connection internet est nécessaire pour ajouter ou mettre à jour un favori.
-       <br/>Vos favoris sont stockées sur votre téléphone uniquement et ne sont échangés avec aucun autre service.</p>
+       <br/>Vos favoris sont stockés sur votre téléphone uniquement et ne sont échangés avec aucun autre service.</p>
   </div>
 </div>
 
@@ -22,7 +22,7 @@
 <div class="card" style="box-shadow: 0 1px 4px rgba(237, 171, 74, 0.5);">
   <div class="item item-text-wrap" style="text-align: center">
     <p>Toutes les informations relatives aux arrêts et horaires du réseau Met'
-      proviennent du site officiel <a href="http://lemet.fr" target="_blank">lemet.fr</a>
+      proviennent du site officiel <a ng-click="GotoLink('http://lemet.fr')">lemet.fr</a>
       et sont exposés inchangés dans l'application Mon Met'.</p>
   </div>
 </div>

@@ -56,6 +56,7 @@ public class TimeTableService {
      */
     public TimeTable fetchTimeTable(Stop stop) throws Exception {
         String url = "http://lemet.fr/src/page_editions_horaires_iframe_build.php?ligne=" + stop.getLine() + "&head=" + stop.getHead().replaceAll("\\s", "%20") + "%7C" + stop.getLine() + "&arret=" + stop.getStopId();
+        System.out.println("Fetching from: " + url);
         Document doc = Jsoup.connect(url).timeout(timeTableConnectionTimeout).get();
 
         TimeTable timeTable = new TimeTable();
