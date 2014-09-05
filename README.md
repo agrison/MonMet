@@ -1,11 +1,26 @@
 MonMet
 ======
 
+## MonMet
+
+MonMet is a free mobile application that let user saves the time tables of his favorite bus stops
+and have a quick look on them whenever he wants.
+
+The application is composed of:
+
+* A mobile application using ionic framework
+* A backend using spring boot and redis.
+
+## Screenshots
+
+![Home page](src/main/resources/public/pic1.png) ![Bus stop view](src/main/resources/public/pic2.png)
+
 ## Dependencies
 
 * Java 7
 * Maven  3+
 * Redis
+* ionic framework
 
 ## Running the Backend
 
