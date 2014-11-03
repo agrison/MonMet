@@ -143,3 +143,7 @@ nohup java -jar target/MonMet*.jar &
     "lon": 6.175176
 }
 ```
+
+## TODO
+
+Deploy on Android store...
