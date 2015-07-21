@@ -17,10 +17,12 @@ The application is composed of:
 
 ## Dependencies
 
-* Java 7
-* Maven  3+
+* Java 8
+* Maven 3+
 * Redis
 * ionic framework
+* Tesseract (`brew install tesseract`) + Tesseract4j
+* GhostScript (`brew install ghostscript`)
 
 ## Running the Backend
 
@@ -31,7 +33,7 @@ redis-server
 
 Init redis
 ```
-cat src/main/resources/init.redis | redis-cli --pipe
+cat src/main/resources/init.redis | redis-cli -x
 ```
 
 Run the backend
@@ -40,6 +42,17 @@ mvn package
 nohup java -jar target/MonMet*.jar &
 ```
 
+Run the app on your computer
+```
+cd MonMet && ionic serve
+```
+
+Run the app on your device
+```
+cd MonMet && ionic run android
+or
+cd MonMet && ionic run ios
+```
 
 ## REST API
 
@@ -143,7 +156,3 @@ nohup java -jar target/MonMet*.jar &
     "lon": 6.175176
 }
 ```
-
-## TODO
-
-Deploy on Android store...

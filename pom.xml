@@ -94,6 +94,24 @@
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
 
+
+		<dependency>
+			<groupId>net.sf</groupId>
+			<artifactId>ghost4j</artifactId>
+			<version>0.4.5</version>
+		</dependency>
+
+		<dependency>
+			<groupId>net.sourceforge</groupId>
+			<artifactId>tess4j</artifactId>
+			<version>3.0.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.kenai.nbpwr</groupId>
+			<artifactId>com-sun-media-imageio</artifactId>
+			<version>1.1-201002281504</version>
+		</dependency>
+
     </dependencies>
 
     <properties>
@@ -106,8 +124,8 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>1.7</source>
-                    <target>1.7</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
             <plugin>
@@ -129,5 +147,28 @@
             </plugin>
         </plugins>
     </build>
+
+    <repositories>
+
+		<repository>
+			<id>clojars.org</id>
+			<url>http://clojars.org/repo</url>
+		</repository>
+		<repository>
+			<id>com.springsource.repository.bundles.external</id>
+			<name>SpringSource Enterprise Bundle Repository - External Bundle Releases</name>
+			<url>http://repository.springsource.com/maven/bundles/external</url>
+		</repository>
+		<repository>
+			<id>novamens.repository.external</id>
+			<name>novamens Releases</name>
+			<url>http://maven.novamens.com/</url>
+		</repository>
+		<repository>
+			<id>kenai.repository.external</id>
+			<name>Kenai Releases</name>
+			<url>https://nbpwr.kenai.com/maven-repository/releases</url>
+		</repository>
+    </repositories>
 
 </project>

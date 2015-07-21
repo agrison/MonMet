@@ -15,6 +15,7 @@ me/grison/monmet/rest/AppController.class
 me/grison/monmet/repository/StorageKey.class
 me/grison/monmet/domain/ext/StopCoordinatesInfo.class
 me/grison/monmet/timetable/StopsService.class
+me/grison/monmet/web/IndexController$1.class
 me/grison/monmet/domain/Stop.class
 me/grison/monmet/domain/TimeTable.class
 me/grison/monmet/timetable/TimeTableService.class

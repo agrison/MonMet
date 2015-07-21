@@ -5,10 +5,8 @@ import com.google.common.collect.ImmutableSet;
 import lombok.Data;
 
 import javax.xml.bind.annotation.XmlRootElement;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * This is a time table.
@@ -22,6 +20,19 @@ public class TimeTable {
     List<String> saturday = new ArrayList<>();
     List<String> sunday = new ArrayList<>();
     List<String> nextRides;
+
+
+        public List<String> collectMinutes(String line, String hour) {
+            return Arrays.asList(line.split(" ")).stream()
+                           .filter(s -> !s.trim().isEmpty()).map(s -> hour + ":" + s.trim()).collect(Collectors.toList());
+        }
+
+        public void addHourLine(List<String> line) {
+            String hour = line.get(0).replace("“", "");
+            week.addAll(collectMinutes(line.get(1), hour));
+            saturday.addAll(collectMinutes(line.get(2), hour));
+            sunday.addAll(collectMinutes(line.get(3), hour));
+        }
 
     /**
      * Merge with another timetable.

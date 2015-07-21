@@ -15,6 +15,16 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import net.sourceforge.tess4j.Tesseract;
+import net.sourceforge.tess4j.TesseractException;
+
+import javax.imageio.ImageIO;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * Timetable service.
  */
@@ -55,18 +65,42 @@ public class TimeTableService {
      * @throws Exception
      */
     public TimeTable fetchTimeTable(Stop stop) throws Exception {
-        String url = "http://lemet.fr/src/page_editions_horaires_iframe_build.php?ligne=" + stop.getLine() + "&head=" + stop.getHead().replaceAll("\\s", "%20") + "%7C" + stop.getLine() + "&arret=" + stop.getStopId();
+        String url = "http://lemet.fr/vos-fiches-horaires-a-larret/?ligne=" + stop.getLine() + "&head=" + stop.getHead().replaceAll("\\s", "%20") + "%7C" + stop.getLine() + "&arret=" + stop.getStopId();
         System.out.println("Fetching from: " + url);
         Document doc = Jsoup.connect(url).timeout(timeTableConnectionTimeout).get();
 
-        TimeTable timeTable = new TimeTable();
+        String imageUrl = doc.select("#target_plan").attr("src").replaceAll(" ", "%20");
+        System.out.println("-> " + imageUrl);
+
+        TimeTable tt = new TimeTable();
+        Tesseract instance = Tesseract.getInstance();
+        try {
+            instance.setPageSegMode(6); // Assume a single uniform block of text.
+            //instance.setTessVariable("tessedit_char_whitelist", "0123456789“"); // only allow digits
+            String result = instance.doOCR(ImageIO.read(new URL(imageUrl)));
+            System.out.println("OCR Ok");
+            Arrays.asList(result.split("\n"))
+                    .stream()
+                    .filter(s -> s.contains("“"))
+                    .map(s -> s.replaceAll("O", "0") + " ")
+                    .map(s -> Arrays.asList((s.split(" ")[0] + s.replaceAll(s.split(" ")[0], ";")).split(";")))
+                    .forEach(line -> tt.addHourLine(line));
+            System.out.println(tt.getWeek());
+            System.out.println(tt.getSunday());
+        } catch (TesseractException e) {
+            System.err.println(e.getMessage());
+        }
+        return tt;
+    }
+
+        /*TimeTable timeTable = new TimeTable();
         timeTable.setWeek(extractTimeTable(doc.select("table#horaires tr:eq(1) td.un table").first()));
         timeTable.setSaturday(extractTimeTable(doc.select("table#horaires tr:eq(1) td.deux table").first()));
         timeTable.setSunday(extractTimeTable(doc.select("table#horaires tr:eq(1) td.trois table").first()));
 
         // Go get also the stop coordinates
         stopsService.fetchStopCoordinates(stop.getLine(), stop.getStopName());
-        return timeTable;
+        return timeTable;*/
     }
 
     /**
